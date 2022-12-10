@@ -9,6 +9,9 @@ kubectl wait --namespace ingress-nginx \
   --selector=app.kubernetes.io/component=controller \
   --timeout=120s
 
+until echo "waiting for nginx"; sleep 5; curl http://localhost/ | grep "nginx"; do : ; done
+sleep 60
+
 helm install helm-example ../helm-example
 
 sleep 15
